@@ -5,10 +5,13 @@
  */
 package service;
 
+import com.google.gson.Gson;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import model.Client;
 import model.Gestionnaire;
+import serviceClient.ClientPersistance;
 import verification.Verification;
 
 /**
@@ -17,6 +20,7 @@ import verification.Verification;
  */
 @WebService(serviceName = "MessageService")
 public class MessageService {
+
     public MessageService(){
         System.out.println("je suis Service1");
     }
@@ -26,9 +30,14 @@ public class MessageService {
      */
     @WebMethod(operationName = "myMessage")
     public String myMessage(@WebParam(name = "jsonInfos") String jsonInfos) {
-        
-        int year = Gestionnaire.getClient(jsonInfos).getDdn();
-        Gestionnaire.getEnvirenment();
-        return Verification.showMessageFromAge(year);
+        Client client = Gestionnaire.getClient(jsonInfos);
+        int year = client.getDdn();
+        String message = Verification.showMessageFromAge(year);
+        Gestionnaire.setInfosClient();
+        Gson gson = new Gson();
+        String clientJson = gson.toJson(client);
+        ClientPersistance.persistClient(clientJson);
+        return message;
+        //return clientJson;
     }
 }

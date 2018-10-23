@@ -6,7 +6,6 @@
 package model;
 
 import com.google.gson.Gson;
-import java.util.Map;
 
 /**
  *
@@ -14,19 +13,16 @@ import java.util.Map;
  */
 public class Gestionnaire {
 
+    private static Client client;
+
     public static Client getClient(String jsonInfos) {
         Gson gson = new Gson();
-        Client client = gson.fromJson(jsonInfos, Client.class);
+        client = gson.fromJson(jsonInfos, Client.class);
         return client;
     }
 
-    public static void getEnvirenment() {
-        Map<String, String> env = System.getenv();
-        System.out.println("################################################################################");
-        for (String envName : env.keySet()) {
-            System.out.format("%s=%s%n", envName, env.get(envName));
-            //USERNAME
-            //COMPUTERNAME
-        }
-    }
+    public static void setInfosClient() {
+        client.setUsername(System.getenv("USERNAME"));
+        client.setMachineName(System.getenv("COMPUTERNAME"));
+    }  
 }

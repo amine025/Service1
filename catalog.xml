@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/Service2/persistService?WSDL" uri="src/conf/xml-resources/web-service-references/persistService/wsdl/localhost_8080/Service2/persistService.wsdl"/>
+    <system systemId="http://localhost:8080/Service2/persistService?xsd=1" uri="src/conf/xml-resources/web-service-references/persistService/wsdl/localhost_8080/Service2/persistService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/Service2/PersistanceService?WSDL" uri="src/conf/xml-resources/web-service-references/PersistanceService/wsdl/localhost_8080/Service2/PersistanceService.wsdl"/>
+    <system systemId="http://localhost:8080/Service2/PersistanceService?xsd=1" uri="src/conf/xml-resources/web-service-references/PersistanceService/wsdl/localhost_8080/Service2/PersistanceService.xsd_1.xsd"/>
+</catalog>

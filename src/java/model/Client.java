@@ -5,16 +5,16 @@ public class Client {
     String nom;
     String prenom;
     int ddn;
-    String ip;
-    String nomMachine;
+    String username;
+    String machineName;
     String localisation;
 
     public Client(String nom, String prenom, int ddn, String ip, String nomMachine, String localisation) {
         this.nom = nom;
         this.prenom = prenom;
         this.ddn = ddn;
-        this.ip = ip;
-        this.nomMachine = nomMachine;
+        this.username = ip;
+        this.machineName = nomMachine;
         this.localisation = localisation;
     }
 
@@ -40,12 +40,12 @@ public class Client {
         return ddn;
     }
 
-    public String getIp() {
-        return ip;
+    public String getUsername() {
+        return username;
     }
 
-    public String getNomMachine() {
-        return nomMachine;
+    public String getMachineName() {
+        return machineName;
     }
 
     public String getLocalisation() {
@@ -64,18 +64,15 @@ public class Client {
         this.ddn = ddn;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setUsername(String ip) {
+        this.username = ip;
     }
 
-    public void setNomMachine(String nomMachine) {
-        this.nomMachine = nomMachine;
+    public void setMachineName(String nomMachine) {
+        this.machineName = nomMachine;
     }
 
     public void setLocalisation(String localisation) {
         this.localisation = localisation;
     }
-    
-    
-
 }
