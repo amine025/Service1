@@ -8,6 +8,7 @@ package service;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import model.Gestionnaire;
 import verification.Verification;
 
 /**
@@ -25,9 +26,9 @@ public class MessageService {
      */
     @WebMethod(operationName = "myMessage")
     public String myMessage(@WebParam(name = "jsonInfos") String jsonInfos) {
-        jsonInfos = "{\"nom\":\"Amine\",\"prenom\":\"Ghodbane\",\"ddn\":{\"annee\":\"1999\",\"mois\":\"06\",\"jour\":\"06\"}}";
-        Verification.showMessageFromAge(jsonInfos);
-        return Verification.showMessageFromAge(jsonInfos);
+        
+        int year = Gestionnaire.getClient(jsonInfos).getDdn();
+        Gestionnaire.getEnvirenment();
+        return Verification.showMessageFromAge(year);
     }
-
 }
