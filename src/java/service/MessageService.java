@@ -31,11 +31,13 @@ public class MessageService {
     @WebMethod(operationName = "myMessage")
     public String myMessage(@WebParam(name = "jsonInfos") String jsonInfos) {
         Client client = Gestionnaire.getClient(jsonInfos);
-        int year = client.getDdn();
+        int year = client.getBirthDay();
         String message = Verification.showMessageFromAge(year);
         Gestionnaire.setInfosClient();
         Gson gson = new Gson();
         String clientJson = gson.toJson(client);
+        System.out.println("");
+        System.out.println(clientJson);
         ClientPersistance.persistClient(clientJson);
         return message;
         //return clientJson;
