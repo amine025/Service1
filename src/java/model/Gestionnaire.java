@@ -5,8 +5,6 @@
  */
 package model;
 
-import com.google.gson.Gson;
-
 /**
  *
  * @author 1895101
@@ -15,9 +13,9 @@ public class Gestionnaire {
 
     private static Client client;
 
-    public static Client getClient(String jsonInfos) {
-        Gson gson = new Gson();
-        client = gson.fromJson(jsonInfos, Client.class);
+    public static Client getClient(String birthDay) {
+        int year = Integer.parseInt(birthDay);
+        client = new Client(year);
         return client;
     }
 

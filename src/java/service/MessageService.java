@@ -27,16 +27,18 @@ public class MessageService {
 
     /**
      * Web service operation
+     * @param birthDay
+     * @return 
      */
     @WebMethod(operationName = "myMessage")
-    public String myMessage(@WebParam(name = "jsonInfos") String jsonInfos) {
-        Client client = Gestionnaire.getClient(jsonInfos);
+    public String myMessage(@WebParam(name = "birthDay") String birthDay) {
+        Client client = Gestionnaire.getClient(birthDay);
         int year = client.getBirthDay();
         String message = Verification.showMessageFromAge(year);
-        Gestionnaire.setInfosClient();
+       Gestionnaire.setInfosClient();
         Gson gson = new Gson();
         String clientJson = gson.toJson(client);
-        System.out.println("");
+        System.out.println("############################################################################################");
         System.out.println(clientJson);
         ClientPersistance.persistClient(clientJson);
         return message;

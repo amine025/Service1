@@ -2,16 +2,13 @@ package model;
 
 public class Client {
 
-    String firstName;
-    String lastName;
     int birthDay;
     String username;
     String machineName;
     String timeStamp;
 
-    public Client(String firstName, String lastName, int birthDay, String username, String machineName, String timeStamp) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Client(int birthDay, String username, String machineName, String timeStamp) {
+
         this.birthDay = birthDay;
         this.username = username;
         this.machineName = machineName;
@@ -22,18 +19,8 @@ public class Client {
 
     }
 
-    public Client(String firstName, String lastName, int birthDay) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Client(int birthDay) {
         this.birthDay = birthDay;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
     }
 
     public int getBirthDay() {
@@ -50,14 +37,6 @@ public class Client {
 
     public String getTimeStamp() {
         return timeStamp;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public void setBirthDay(int birthDay) {
