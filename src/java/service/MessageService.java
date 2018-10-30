@@ -5,14 +5,15 @@
  */
 package service;
 
-import com.google.gson.Gson;
+import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import model.Client;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.WebServiceRef;
+import model.ClientsEntrepot;
 import model.Gestionnaire;
-import serviceClient.ClientPersistance;
-import verification.Verification;
+import serviceClient.PersistanceService_Service;
 
 /**
  *
@@ -21,27 +22,31 @@ import verification.Verification;
 @WebService(serviceName = "MessageService")
 public class MessageService {
 
-    public MessageService(){
-        System.out.println("je suis Service1");
-    }
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/Service2/PersistanceService.wsdl")
+    private PersistanceService_Service service;
+
+    @Resource
+    WebServiceContext wsContext;
 
     /**
      * Web service operation
+     *
      * @param birthDay
-     * @return 
+     * @return
      */
     @WebMethod(operationName = "myMessage")
     public String myMessage(@WebParam(name = "birthDay") String birthDay) {
-        Client client = Gestionnaire.getClient(birthDay);
-        int year = client.getBirthDay();
-        String message = Verification.showMessageFromAge(year);
-       Gestionnaire.setInfosClient();
-        Gson gson = new Gson();
-        String clientJson = gson.toJson(client);
-        System.out.println("############################################################################################");
-        System.out.println(clientJson);
-        ClientPersistance.persistClient(clientJson);
-        return message;
-        //return clientJson;
+        
+        ClientsEntrepot clinetEntrepot = ClientsEntrepot.getInstance();
+        clinetEntrepot.addClient(birthDay,wsContext);
+        return Gestionnaire.sendAdvice(birthDay);
     }
+
+    private void persist(java.lang.String json) {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        serviceClient.PersistanceService port = service.getPersistanceServicePort();
+        port.persist(json);
+    }
+
 }

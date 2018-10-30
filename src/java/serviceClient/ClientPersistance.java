@@ -18,6 +18,12 @@ public class ClientPersistance {
     }
     
     public static void persistClient(String json){
-        persist(json);
+        persist_1(json);
+    }
+
+    private static void persist_1(java.lang.String json) {
+        serviceClient.PersistanceService_Service service = new serviceClient.PersistanceService_Service();
+        serviceClient.PersistanceService port = service.getPersistanceServicePort();
+        port.persist(json);
     }
 }
